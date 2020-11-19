@@ -1,0 +1,138 @@
+Proyecto con tags
+
+Construir un sistema de control de proyectos que permita efectuar un seguimiento efectivo de los proyectos que se llevan a cabo en diferentes disciplinas. Este sistema es muy sencillo y tiene como objetivo principal, definir el tipo de proyecto, sus actividades, los tiempos tentativos de inicio y finalizacion, los costos que representa el desenvolvimiento de las diferentes actividades que forman cada proyecto y el costo asociado con la ejecucion de cada una de ellas. Ademas lleva la asignacion de los recursos humanos que intervienen en cada una de las actividades definiendo su carga de trabajo, de manera de optimizar el empleo de la fuerza laboral de forma ordenada, sistematica y sobre todo eficiente.
+
+Como proyecto informatico, este proyecto Django llevara el nombre de [npr controlproyectos], y su descripcion es la mencionada en la seccion anterior.
+
+[dpr Construir un sistema de control de proyectos que permita efectuar un seguimiento efectivo de los proyectos que se llevan a cabo en diferentes disciplinas. Este sistema es muy sencillo y tiene como objetivo principal, definir el tipo de proyecto, sus actividades, los tiempos tentativos de inicio y finalizacion, los costos que representa el desenvolvimiento de las diferentes actividades que forman cada proyecto y el costo asociado con la ejecucion de cada una de ellas. Ademas lleva la asignacion de los recursos humanos que intervienen en cada una de las actividades definiendo su carga de trabajo, de manera de optimizar el empleo de la fuerza laboral de forma ordenada, sistematica y sobre todo eficiente.]
+
+El titulo de este proyecto sera [tit Control de Proyectos] y estara alineando tanto vertical como horizontalmente al centro de su seccion correspondiente. [jht c] [jvt c]
+
+Para fines de organizacion, el sistema estara dividido en aplicaciones que permitiran por un lado manejar todos la informacion de los parametros que soportan al sistema asi como de las aplicaciones que tendran a su cargo el registro de la informacion especifica relativa a los proyectos que se consideren.
+
+Entonces, las aplicaciones de este proyecto seran por el momento solo dos, la aplicacion parametros y la aplicacion proyectos.
+
+Aplicacion: [nap parametros]
+
+[dap Esta aplicacion es la que contiene a todos los modelos que representan los datos de apoyo como ser inicialmente, los tipos de proyectos.] Mas adelante se vera de insertar en esta aplicacion otros modelos que iran surgiendo a medidad que se necesite parametrizar el funcionamiento del sistema y de esta manera normalizar la base de datos evitando redundancias e incoherencias en los datos.
+
+Esta aplicacion se desplegara en el menu con el nombre de [tom Parametros] y tiene un ToolTip con el mensaje: [tta Modelos de parametros del sistema]
+
+Esta aplicacion tiene ahora cinco modelos uno de los cuales es el tipo de proyecto, cuyo nombre informatico es: [nmo tipo]. [dmo Este modelo representa a los tipos de proyectos que se controlan] . Este modelo se encuentra identificado por su propiedad [smo self.nombre] y tambien se lo identifica para fines de borrado de registros con su propiedad [bmo nombre]. Este modelo aparece en el menu con el texto: [tom Tipo] y despliega un ToolTip con el mensaje: [ttm Modelo de los Tipos de Proyectos]
+
+La unica propiedad de este modelo es: [npro nombre] que [dpro Identifica al tipo de proyectos] y que es una propiedad de tipo alfanumerico [tpro s] y que tiene una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Nombre]
+
+El otro modelo es la [nmo especialidad] que es [dmo La que define las disciplinas en las que podria haberse graduado el recurso]. Este modelo se identifica con [smo self.descripcion] y para borrado con su propiedad [bmo descripcion]. Aparece en le menu con el texto [tom Especialidad] y despliega un ToolTip con el mensaje: [ttm Especialidades para los recursos]
+
+La unica propiedad de este modelo es: [npro descripcion] que [dpro Identifica a los estudios] y que es una propiedad de tipo alfanumerico] [tpro s] y que tiene una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Descripcion]
+
+Otro modelo es el [nmo tipocosto] que es el que[dmo Especifica el nombre de gato en los proyectos]. Este modelo se identifica con [smo self.descripcion] y para borrado con su propiedad [bmo descripcion]. Aparece en le menu con el texto[tom Tipo Costo] y despliega un ToolTip con el mensaje:[ttm Nombres de Costos].
+
+La unica propiedad de este modelo es: [npro descripcion] que [dpro Identifica a los estudios] y que es una propiedad de tipo alfanumerico] [tpro s] y que tiene una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Descripcion]
+
+El otro modelo es la [nmo moneda] que es [dmo El nombre de las monedas para los costos]. Este modelo se identifica con [smo self.nombre] y para borrado con su propiedad [bmo nombre]. Aparece en le menu con el texto [tom Moneda] y despliega un ToolTip con el mensaje: [ttm Monedas del proyecto]
+
+La unica propiedad de este modelo es: [npro nombre] que [dpro Identifica a las monedas] y que es una propiedad de tipo alfanumerico] [tpro s] y que tiene una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Nombre]
+
+El otro modelo es el [nmo tipocambio] que es [dmo La equivalencia entre las monedas y el dolar]. Este modelo se identifica con [smo str(self.valor)] y para borrado con su propiedad [bmo valor]. Es un modelo dependiente del modelo [pmo moneda].
+
+Una propiedad de este modelo es: [npro fecha] que [dpro Fecha de la equivalencia] y que es una propiedad de tipo fecha [tpro t] . Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Fecha]
+
+Una propiedad de este modelo es: [npro valor] que [dpro Valor del cambio] y que es una propiedad de tipo decimal [tpro d] . Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Valor]
+
+Aplicacion: [nap proyectos]
+
+[dap Esta aplicacion es la que administra todos los modelos que tienen que ver con el funcionamiento y control de los proyectos y sus actividades]. Se despliega en el menu con el nombre de [txma Proyectos]. Despliega un ToolTip con el mensaje: [tta Aplicacion de modelos de control].
+
+Los modelos que maneja esta aplicacion son:
+
+Un modelo que esta dentro de esta aplicacion, es el modelo [nmo recurso] que [dmo representa a las personas que son responsables, ya sea de un proyecto o de ejecutar las actividades de los mismos]. Este modelo se despliega en el menu con el texto: [tom Recurso] y despliega un ToolTip con el mensaje: [ttm Modelo de manejo de recursos humanos]. Este modelo se identifica con la expresion [smo self.nombre] y su identificacion para borrado es el nombre de su propiedad: [bmo nombre].
+
+La propiedad definida para este modelo es:
+
+[npro nombre]: que [dpro Identifica con nombres y apellidos al recurso]. De tipo alfanumerico [trpo s] y de una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Nombre]
+
+[npro costohora]: que [dpro Lo que cuesta el recurso por cada hora]. De tipo decimal [trpo d] . Aparece en las listas [enl] con [ncl 1] columnas y el nombre de columna [txc Costo/Hora]
+
+[npro especialidad]: que [dpro El estudio que hizo el recurso]. De tipo foranea [trpo f] relacionada con el modelo [prf especialidad]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Especialidad]
+
+[npro nivelespecialidad]: que [dpro Especifica el grado academico alcanzado]. De tipo radiobutton [tpro r] y con el texto en los botones [txb m,Master;d,Doctorado;g,Genio]. Aparece en las listas [enl] con [ncl 1] columnas y el nombre de columna [txc Nivel]
+
+Modelo: [nmo empresa] que es el modelo que [dmo representa a las empresas que controlan proyectos]. Se despliega en el menu con el texto: [tom Empresa]. El ToolTip que muestra es: [ttm Modelo de registro de Empresas]. Este modelo se identifica con la expresion [smo self.nombre] y su identificacion para borrado es el nombre de su propiedad: [bmo nombre].
+
+Las propiedades de este modelo son:
+
+[npro nombre]: que [dpro Es el nombre de cada empresa]. Esta propiedad es de tipo alfanumerico [trpo s] y tiene una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Nombre]
+
+[npro objetivo]: [dpro Define el objetivo de la empresa]. Esta propiedad tiene el tipo informatico de RichTextBox [tpro h].
+
+[npro usuario]: [dpro Para cada empresa nueva se graba el usuario que la registra]. Tambien es de tipo informatico, [tpro u] usuario. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Usuario]
+
+
+Modelo: [nmo proyecto] que es el modelo que [dmo representa a los proyectos que se ejecutaran y controlaran]. Se despliega en el menu con el texto: [tom Proyecto]. El ToolTip que muestra es: [ttm Modelo de registro de los Proyectos]. Es hijo del modelo [pmo empresa]. Este modelo se identifica con la expresion [smo self.descripcion] y su identificacion para borrado es el nombre de su propiedad: [bmo descripcion].
+
+Las propiedades de este modelo son:
+
+[npro descripcion]: que [dpro Especifica el motivo del proyecto]. Esta propiedad es de tipo alfanumerico [trpo s] y tiene una longitud maxima de [lst 30] caracteres.Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Descripcion]
+
+[npro fechaInicio]: [dpro Es la propiedad que define la fecha en la que se inicia el proyecto]. Esta propiedad tiene el tipo informatico de fecha [tpro t].Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Inicio]
+
+[npro fechaFin]: [dpro Es la propiedad que define la fecha tentativa de finalizacion del proyecto]. Tambien es de tipo informatico, [tpro t] fecha. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Fin]
+
+[npro tipo]: [dpro Es la propiedad que especifica el tipo de proyecto que se define]. Esta propiedad es una llave foranea [tpro f] relacionada con el modelo [prf tipo].
+
+[npro responsable]: [dpro Es la propiedad con la que se identifica a la persona que tendra a su cargo la administracion del proyecto y por lo tanto sera la responsable de su ejecucion]. Esta propiedad es una llave foranea [tpro f] relacionada con el modelo [prf recurso] . Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Responsable]
+
+Un segundo modelo de esta aplicacion es el llamado [nmo actividad], es el que [dmo representa a las actividades del proyecto]. Es hijo del modelo [pmo proyecto] ya que solo puede existir si existe su modelo padre. Este modelo no tiene un texto en el menu ya que su administracion esta a cargo de su modelo padre. Este modelo se identifica con la expresion [smo self.descripcion] y su identificacion para borrado es el nombre de su propiedad: [bmo descripcion].
+
+Las propiedades de este modelo son:
+
+[npro descripcion]: [dpro Propiedad que describe a la actividad]. Es de tipo alfanumerico [tpro s] y tiene una longitud maxima de [lst 30] caracteres. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Descripcion]
+
+[npro fechainicio]: [dpro Es la fecha en la que debe iniciarse la actividad]. Esta propiedad tiene el tipo informatico de fecha [tpro t]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Inicio]
+
+[npro fechafin]: [dpro Es la propiedad que define la fecha tentativa de la finalizacion de la actividad]. Esta propiedad tambien tiene el tipo informatico de fecha [tpro t]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Fin]
+
+Otro modelo de esta aplicacion, es el modelo [nmo costo]. [dmo Cada actividad tiene diferentes etapas en las que posiblemente se deba efectuar un gasto y este modelo representa ese movimiento economico]. Este modelo es el que depende del modelo [pmo actividad] ya que es el que registra los diferentes desembolsos que se realizan debido a la ejecucion de la actividad y en diferentes momentos. Este modelo se identifica con la expresion [smo self.descripcion] y su identificacion para borrado es el nombre de su propiedad: [bmo descripcion].
+
+Las propiedades de este modelo son:
+
+[npro tipocosto]: [dpro Define el motivo del desembolso]. Esta propiedad es de tipo foranea [trpo f] y se relaciona con el modelo [prf tipocosto]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Descripcion]
+
+[npro importe]: [dpro Propiedad que almacena el monto de dinero que se desembolsa en una determinada etapa de la actividad]. Esta propiedad es de tipo decimal [trpo d] por su caracteristica de ser fraccionada. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Importe]
+
+[npro moneda]: [dpro Propiedad que almacena la moneda del desembolso]. Esta propiedad es de tipo foranea [tpro f] relacionada con el modelo [prf moneda]. Aparece en las listas [enl] con [ncl 1] columnas y el nombre de columna [txc Moneda]
+
+[npro fecha]: [dpro Fecha del desembolso]. Esta propiedad es de tipo fecha [tpro n] . Aparece en las listas [enl] con [ncl 1] columnas y el nombre de columna [txc Fecha]
+
+El ultimo modelo definido en esta primera aproximacion de disenio, es el modelo [nmo asignacion] que es el que [dmo relaciona al modelo recurso con el modelo actividad]. De esta manera se controla la distribucion de los recursos humanos en las diferentes actividades de los proyectos. El modelo se despliega en el menu con el texto: [tom Asignacion] y tiene su identificacion gobernada por la expresion compuesta: [smo self.recurso + '-' + self.actividad] que la identifica de forma inequivoca y su identificacion para el borrado es: [bmo recurso + '-' + actividad]
+
+Las propiedades de este modelo son:
+
+[npro recurso]: [dpro Propiedad que identifica a la persona que se encarga de ejecutar la actividad]. Esta propiedad es de tipo foranea [tpro f] y esta relacionada con el modelo [prf recurso]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc recurso]
+
+[npro actividad]: [cpro Esta propiedad identifica a la actividad de la que sera el ejecutor el recurso asignado]. Es una propiedad de tipo foranea [tpro f] y esta relacionada con el modelo [prf actividad]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Actividad]
+
+[npro diaAsignado]: Es una propiedad de tipo entera y su valor esta en el rango de 1 a 5 donde 1 representa el dia lunes y 5 el dia viernes. [dpro Es la propiedad que define el dia de la semana en el que el recurso debe trabajar en la actividad asignada]. Aparece en las listas [enl] con [ncl 1] columnas y el nombre de columna [txc Dia]
+
+[npro horaInicio]: [dpro Es la hora del dia asignado en el que el recurso debe comenzar su trbajo en la actividad correspondiente]; El tipo de esta propiedad es alfanumerico [tpro s] de [lst 5] caracteres como maximo. El formato de esta propiedad es HH:MM y su valor debe ser controlado a tiempo de ser ingresada en la base de datos. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Hora Inicio]
+
+Las reglas de esta propiedad son:
+
+[msj La horaInicio debe ser de 5 caracteres]
+
+[crg if len(horaInicio) != 5:]
+
+[msj El caracter que separa horas de minutos debe ser ":"]
+
+[crg if horaInicio~2:3@ != ':':]
+
+[msj Las horas deben estar entre "00" y "23" y los minutos entre "00" y "59"]
+
+[crg if (int(horaInicio~0:2@) <0 or int(horaInicio~0:2@) >23) or (int(horaInicio~3:5@) <0 or int(horaInicio~3:5@) >59):]
+
+[npro horas]: [dpro Es una propiedad de tipo entero [trpo i] y representa el numero de horas en que el recurso debe trabajar en la actividad asignada]. El valor inicial de esta propiedad es [vdf 1]. Este valor tiene un rango entre 1 y 12 horas. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Horas]
+
+[npro inicio]: [dpro Es una propiedad de tipo hora y representa la hora de inicio de actividades del recurso]. Es de tipo [tpro e]. Aparece en las listas [enl] con [ncl 2] columnas y el nombre de columna [txc Inicio]
+
+[npro tarea]: [dpro Lo que se espera del recurso en la actividad asignada]. Esta propiedad es de tipo texto [tpro x].
